@@ -38,8 +38,7 @@ public class FoodDaoImpl implements FoodDao {
 	}
 
 	/**
-	 * 검색 조건(key) 검색 단어(word)에 해당하는 식품 정보(Food)의 개수를 반환. web에서 구현할 내용. web에서 페이징 처리시
-	 * 필요
+	 * 검색 조건(key) 검색 단어(word)에 해당하는 식품 정보(Food)의 개수를 반환. web에서 구현할 내용. web에서 페이징 처리시 필요
 	 *
 	 * @param bean 검색 조건과 검색 단어가 있는 객체
 	 * @return 조회한 식품 개수

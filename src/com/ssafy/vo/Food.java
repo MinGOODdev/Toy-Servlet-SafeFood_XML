@@ -129,7 +129,7 @@ public class Food {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+
 	public String getAllergy() {
 		return allergy;
 	}
@@ -143,5 +143,5 @@ public class Food {
 				+ natrium + ", chole=" + chole + ", fattyacid=" + fattyacid + ", transfat=" + transfat + ", maker="
 				+ maker + ", material=" + material + ", img=" + img + "]";
 	}
-	
+
 }

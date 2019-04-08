@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -14,9 +16,9 @@ import com.ssafy.vo.Food;
  * FoodNutritionSAXHandler, FoodSAXHandler를 활용하여 식품 정보를 load하는 SAX Parser
  */
 public class FoodSaxParser {
-	
-    private String nutritionFilePath = this.getClass().getResource("/").getPath()+"/FoodNutritionInfo.xml";
-    private String foodFilePath = this.getClass().getResource("/").getPath()+"/foodInfo.xml";
+    private String basePath = this.getClass().getResource("/").getPath();
+    private String nutritionFilePath = basePath + "/FoodNutritionInfo.xml";
+    private String foodFilePath = basePath + "/foodInfo.xml";
     private List<Food> foods;
 
     /**
@@ -42,8 +44,6 @@ public class FoodSaxParser {
             SAXParser parser = factory.newSAXParser();
             FoodSAXHandler handler = new FoodSAXHandler();
             FoodNutritionSAXHandler nHandler = new FoodNutritionSAXHandler();
-            System.out.println(foodFilePath);
-            System.out.println(nutritionFilePath);
             
             parser.parse(foodFilePath, handler);
             parser.parse(nutritionFilePath, nHandler);
@@ -62,7 +62,7 @@ public class FoodSaxParser {
                     food.setMaterial(find.getMaterial());
                     food.setImg(find.getImg());
                 }
-                System.out.println(temp);
+//                System.out.println(food);
             }
 
             setFoods(temp);

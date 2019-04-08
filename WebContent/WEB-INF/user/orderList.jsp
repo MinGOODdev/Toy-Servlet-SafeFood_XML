@@ -19,25 +19,23 @@
             <thead class="thead-light">
             <tr>
                 <th>#</th>
-                <th>도서번호</th>
-                <th>도서명</th>
-                <th>저자</th>
-                <th>가격</th>
-                <th>출판사</th>
-                <th>출판일</th>
+                <th>식품명</th>
+                <th>제조사</th>
+                <th>일회 제공량</th>
+                <th>칼로리</th>
+                <th>알레르기 정보</th>
             </tr>
             </thead>
             <tbody>
             <c:if test="${not empty purchaseList}">
-                <c:forEach items="${purchaseList}" var="b" varStatus="status">
+                <c:forEach items="${purchaseList}" var="f" varStatus="status">
                     <tr>
                         <td>${status.count}</td>
-                        <td>${b.isbn}</td>
-                        <td>${b.title}</td>
-                        <td>${b.author}</td>
-                        <td>${b.price} ${b.currency}</td>
-                        <td>${b.publisher}</td>
-                        <td>${b.publishDate}</td>
+                        <td>${f.name}</td>
+                        <td>${f.maker}</td>
+                        <td>${f.supportpereat}</td>
+                        <td>${f.calory}</td>
+                        <td>${f.allergy}</td>
                     </tr>
                 </c:forEach>
             </c:if>

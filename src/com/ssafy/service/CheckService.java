@@ -28,7 +28,10 @@ public class CheckService {
 	public boolean checkAccount(String id, String pw) {
 		List<User> users = userMgr.findAll();
 		for (User u : users) {
-			if (u.getId().equalsIgnoreCase(id) && u.getPw().equals(pw)) return true;
+			if (u.getId().equalsIgnoreCase(id) && u.getPw().equals(pw)) {
+				System.out.println(u.getAllergyList());
+				return true;
+			}
 		}
 		return false;
 	}

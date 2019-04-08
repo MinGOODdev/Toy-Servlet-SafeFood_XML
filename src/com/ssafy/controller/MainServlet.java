@@ -47,9 +47,6 @@ public class MainServlet extends HttpServlet {
 				case "userDelete": page = userController.deleteUser(req, res); break;
 
 //				// 도서 관련
-//				case "getRegister": page = bookController.getRegister(req, res); break;
-//				case "register": page = bookController.register(req, res); break;
-//				case "search": page = bookController.searchBy(req, res); break;
 //				case "bookDelete": page = bookController.delete(req, res); break;
 			}
 

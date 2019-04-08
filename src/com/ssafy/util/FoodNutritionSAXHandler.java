@@ -4,7 +4,7 @@ import com.ssafy.vo.Food;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,50 +16,35 @@ public class FoodNutritionSAXHandler extends DefaultHandler {
     private String temp;        // 태그 바디 정보를 임시 저장
 
     public FoodNutritionSAXHandler() {
-        list = new LinkedList<Food>();
+        list = new ArrayList<>();
     }
 
-    public void startElement(String uri, String localName
-            , String qName, Attributes att) {
+    public void startElement(String uri, String localName, String qName, Attributes att) {
         if (qName.equals("item")) {
             food = new Food();
         }
     }
 
     public void endElement(String uri, String localName, String qName) {
-        if (qName.equals("DESC_KOR")) {
-            food.setName(temp);
-        } else if (qName.equals("SERVING_WT")) {
-            food.setSupportpereat(changeData(temp));
-        } else if (qName.equals("NUTR_CONT1")) {
-            food.setCalory(changeData(temp));
-        } else if (qName.equals("NUTR_CONT2")) {
-            food.setCarbo(changeData(temp));
-        } else if (qName.equals("NUTR_CONT3")) {
-            food.setProtein(changeData(temp));
-        } else if (qName.equals("NUTR_CONT4")) {
-            food.setFat(changeData(temp));
-        } else if (qName.equals("NUTR_CONT5")) {
-            food.setSugar(changeData(temp));
-        } else if (qName.equals("NUTR_CONT6")) {
-            food.setNatrium(changeData(temp));
-        } else if (qName.equals("NUTR_CONT7")) {
-            food.setChole(changeData(temp));
-        } else if (qName.equals("NUTR_CONT8")) {
-            food.setFattyacid(changeData(temp));
-        } else if (qName.equals("NUTR_CONT9")) {
-            food.setTransfat(changeData(temp));
-        } else if (qName.equals("item")) {
-            list.add(food);
+        switch (qName) {
+            case "DESC_KOR": food.setName(temp); break;
+            case "SERVING_WT": food.setSupportpereat(dataParsingDouble(temp)); break;
+            case "NUTR_CONT1": food.setCalory(dataParsingDouble(temp)); break;
+            case "NUTR_CONT2": food.setCarbo(dataParsingDouble(temp)); break;
+            case "NUTR_CONT3": food.setProtein(dataParsingDouble(temp)); break;
+            case "NUTR_CONT4": food.setFat(dataParsingDouble(temp)); break;
+            case "NUTR_CONT5": food.setSugar(dataParsingDouble(temp)); break;
+            case "NUTR_CONT6": food.setNatrium(dataParsingDouble(temp)); break;
+            case "NUTR_CONT7": food.setChole(dataParsingDouble(temp)); break;
+            case "NUTR_CONT8": food.setFattyacid(dataParsingDouble(temp)); break;
+            case "NUTR_CONT9": food.setTransfat(dataParsingDouble(temp)); break;
+            case "item": list.add(food); break;
         }
     }
 
-    public double changeData(String data) {
-        if (data.equals("") || data.equalsIgnoreCase("N/A")) {
-            return 0;
-        } else {
-            return Double.parseDouble(data);
-        }
+    private double dataParsingDouble(String data) {
+        if (data.equals("") || data.equalsIgnoreCase("N/A")) return 0;
+        else return Double.parseDouble(data);
     }
 
     public void characters(char[] ch, int start, int length) {

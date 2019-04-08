@@ -1,8 +1,8 @@
 package com.ssafy.controller;
 
-import com.ssafy.dao.FoodDaoImpl;
-import com.ssafy.dao.UserDaoImpl;
-import com.ssafy.service.CheckService;
+import com.ssafy.dao.impl.FoodDaoImpl;
+import com.ssafy.dao.impl.UserDaoImpl;
+import com.ssafy.service.impl.CheckServiceImpl;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.PageInfo;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UserController {
-	private CheckService checkService = CheckService.getInstance();
+	private CheckServiceImpl checkService = CheckServiceImpl.getInstance();
 	private UserDaoImpl userDao = UserDaoImpl.getInstance();
 	private FoodDaoImpl foodDao = FoodDaoImpl.getInstance();
 

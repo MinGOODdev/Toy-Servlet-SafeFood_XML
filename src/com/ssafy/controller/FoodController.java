@@ -1,6 +1,6 @@
 package com.ssafy.controller;
 
-import com.ssafy.service.FoodServiceImpl;
+import com.ssafy.service.impl.FoodServiceImpl;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.PageInfo;
@@ -13,6 +13,9 @@ import java.util.List;
 public class FoodController {
     private FoodServiceImpl foodService = FoodServiceImpl.getInstance();
 
+    /**
+     * 싱글톤
+     */
     private static FoodController foodController;
     public static FoodController getInstance() {
         if (foodController == null) foodController = new FoodController();
@@ -28,7 +31,6 @@ public class FoodController {
      */
     public PageInfo getFoodList(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("foods", foodService.searchAll(new FoodPageBean()));
-//        System.out.println(foodService.searchAll(new FoodPageBean()));
         return new PageInfo(true, "WEB-INF/food/list.jsp");
     }
 
@@ -58,6 +60,9 @@ public class FoodController {
         String st = request.getParameter("st");
 
         switch (sb) {
+            case "all":
+                request.setAttribute("foods", foodService.searchAll(new FoodPageBean()));
+                break;
             case "code":
                 List<Food> temp1 = new ArrayList<>();
                 Food food = foodService.search(Integer.parseInt(st));
@@ -68,13 +73,10 @@ public class FoodController {
             case "maker":
                 ArrayList<Food> temp2 = new ArrayList<>();
                 System.out.println(temp2);
-                for (Food f : foodService.searchAll(new FoodPageBean(sb, st, "1", 1))) {
+                for (Food f : foodService.searchAll(new FoodPageBean(sb, st))) {
                     temp2.add(f);
                 }
                 request.setAttribute("foods", temp2);
-                break;
-            case "all":
-                request.setAttribute("foods", foodService.searchAll(new FoodPageBean()));
                 break;
         }
         return new PageInfo(true, "WEB-INF/food/list.jsp");

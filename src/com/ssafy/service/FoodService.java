@@ -11,8 +11,4 @@ public interface FoodService {
 
     Food search(int code);
 
-    List<Food> searchBest();
-
-    List<Food> searchBestIndex();
-
 }

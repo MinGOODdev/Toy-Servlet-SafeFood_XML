@@ -1,11 +1,12 @@
-package com.ssafy.dao;
+package com.ssafy.dao.impl;
 
+import com.ssafy.dao.UserDao;
 import com.ssafy.vo.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao {
     private List<User> users;
 
     /**
@@ -26,6 +27,7 @@ public class UserDaoImpl {
      *
      * @return
      */
+    @Override
     public List<User> findAll() {
         return users;
     }
@@ -35,6 +37,7 @@ public class UserDaoImpl {
      *
      * @param user
      */
+    @Override
     public void add(User user) {
         users.add(user);
     }
@@ -44,6 +47,7 @@ public class UserDaoImpl {
      *
      * @param id
      */
+    @Override
     public void delete(String id) {
         for (int i = 0; i < users.size(); ++i) {
             if (users.get(i).getId().equalsIgnoreCase(id)) users.remove(i);
@@ -56,6 +60,7 @@ public class UserDaoImpl {
      * @param name
      * @return
      */
+    @Override
     public User[] searchByName(String name) {
         int count = 0;
         for (User u : users) {

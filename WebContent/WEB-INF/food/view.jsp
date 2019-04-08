@@ -66,18 +66,6 @@
                     <td style="width: 50%;">알레르기 정보</td>
                     <td style="width: 50%;">${food.allergy}</td>
                 </tr>
-<%--                <tr>--%>
-<%--                    <td>저자</td>--%>
-<%--                    <td>${book.author}</td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td>도서가격</td>--%>
-<%--                    <td>${book.price} ${book.currency}</td>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <td>도서설명</td>--%>
-<%--                    <td>${book.description}</td>--%>
-<%--                </tr>--%>
                 </tbody>
             </table>
         </div>

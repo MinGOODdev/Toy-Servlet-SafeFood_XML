@@ -1,16 +1,11 @@
 package com.ssafy.util;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.ssafy.vo.Food;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import com.ssafy.vo.Food;
+import java.util.List;
+import java.util.Map;
 
 /**
  * FoodNutritionSAXHandler, FoodSAXHandler를 활용하여 식품 정보를 load하는 SAX Parser
@@ -49,8 +44,7 @@ public class FoodSaxParser {
             parser.parse(nutritionFilePath, nHandler);
             Map<String, Food> foodMap = handler.getFoods();
 
-            List<Food> temp = new ArrayList<>();
-            temp = nHandler.getList();
+            List<Food> temp = nHandler.getList();
             Food find = null;
 
             for (Food food : temp) {

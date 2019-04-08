@@ -4,6 +4,7 @@ import com.ssafy.dao.FoodDaoImpl;
 import com.ssafy.dao.UserDaoImpl;
 import com.ssafy.service.CheckService;
 import com.ssafy.vo.Food;
+import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.PageInfo;
 import com.ssafy.vo.User;
 
@@ -125,41 +126,41 @@ public class UserController {
         return new PageInfo("main.do?action=userList");
     }
 
-//    /**
-//     * 해당 회원의 구매내역 조회
-//     *
-//     * @param request
-//     * @param response
-//     * @return
-//     */
-//    public PageInfo getPurchaseListByUser(HttpServletRequest request, HttpServletResponse response) {
-//        String id = (String) request.getSession().getAttribute("userId");
-//        for (User u : userDao.findAll()) {
-//            if (u.getId().equalsIgnoreCase(id)) request.setAttribute("purchaseList", u.getBookList());
-//        }
-//        return new PageInfo(true, "WEB-INF/user/orderList.jsp");
-//    }
+    /**
+     * 해당 회원의 구매(섭취) 내역 조회
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public PageInfo getPurchaseListByUser(HttpServletRequest request, HttpServletResponse response) {
+        String id = (String) request.getSession().getAttribute("userId");
+        for (User u : userDao.findAll()) {
+            if (u.getId().equalsIgnoreCase(id)) request.setAttribute("purchaseList", u.getFoodList());
+        }
+        return new PageInfo(true, "WEB-INF/user/orderList.jsp");
+    }
 
-//    /**
-//     * 도서 구매
-//     *
-//     * @param request
-//     * @param response
-//     * @return
-//     */
-//    public PageInfo doPurchase(HttpServletRequest request, HttpServletResponse response) {
-//        String id = (String) request.getSession().getAttribute("userId");
-//        String isbn = request.getParameter("isbn");
-//
-//        Food temp = null;
-//        for (Food b : foodDao.searchAll(new FoodPageBean())) {
-//            if (b.getName().equals(isbn)) temp = b;
-//        }
-//
-//        for (User u : userMgr.findAll()) {
-//            if (u.getId().equalsIgnoreCase(id)) u.getBookList().add(temp);
-//        }
-//        return new PageInfo("main.do?action=bookList");
-//    }
+    /**
+     * 식품 구매(섭취)
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public PageInfo doPurchase(HttpServletRequest request, HttpServletResponse response) {
+        String id = (String) request.getSession().getAttribute("userId");
+        String code = request.getParameter("code");
+
+        Food temp = null;
+        for (Food b : foodDao.searchAll(new FoodPageBean())) {
+            if (b.getName().equals(code)) temp = b;
+        }
+
+        for (User u : userDao.findAll()) {
+            if (u.getId().equalsIgnoreCase(id)) u.getFoodList().add(temp);
+        }
+        return new PageInfo("main.do?action=foodList");
+    }
 
 }

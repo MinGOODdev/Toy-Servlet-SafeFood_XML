@@ -33,24 +33,23 @@ public class MainServlet extends HttpServlet {
 		try {
 			switch (action) {
 			    // Food
-                case "foodList": page = foodController.getBookList(req, res); break;
+                case "foodList": page = foodController.getFoodList(req, res); break;
+				case "view": page = foodController.getFoodDetail(req, res); break;
+				case "search": page = foodController.searchBy(req, res); break;
                 // User
 				case "login": page = userController.login(req, res); break;
 				case "logout": page = userController.logout(req, res); break;
 				case "signUp": page = userController.signUp(req, res); break;
 				case "userList": page = userController.getUserList(req, res); break;
+				case "order": page = userController.doPurchase(req, res); break;
+				case "orderList": page = userController.getPurchaseListByUser(req, res); break;
 				case "userDelete": page = userController.deleteUser(req, res); break;
 
 //				// 도서 관련
 //				case "getRegister": page = bookController.getRegister(req, res); break;
 //				case "register": page = bookController.register(req, res); break;
-//				case "bookList": page = bookController.findAll(req, res); break;
-//				case "view": page = bookController.findByIsbn(req, res); break;
 //				case "search": page = bookController.searchBy(req, res); break;
 //				case "bookDelete": page = bookController.delete(req, res); break;
-//				// 사용자 관련
-//				case "orderList": page = userController.getPurchaseListByUser(req, res); break;
-//				case "order": page = userController.doPurchase(req, res); break;
 			}
 
 			if (page.isForward()) {

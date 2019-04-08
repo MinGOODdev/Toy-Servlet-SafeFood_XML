@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=bookList">Home</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=foodList">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=logout">Logout</a>
@@ -28,9 +28,9 @@
                     Menu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=getRegister">도서등록</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=bookList">도서목록</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=orderList">구매내역</a>
+<%--                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=getRegister">도서등록</a>--%>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=foodList">식품목록</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=orderList">섭취목록</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/main.do?action=userList">회원명단</a>
                 </div>
             </li>

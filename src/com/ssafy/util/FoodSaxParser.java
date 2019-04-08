@@ -13,8 +13,8 @@ import com.ssafy.vo.Food;
  * FoodNutritionSAXHandler, FoodSAXHandler를 활용하여 식품 정보를 load하는 SAX Parser
  */
 public class FoodSaxParser {
-    private String nutritionFilePath = "FoodNutritionInfo.xml";
-    private String foodFilePath = "foodInfo.xml";
+    private String nutritionFilePath = "./0408_backend_관통_PJT/WebContent/res/FoodNutritionInfo.xml";
+    private String foodFilePath = "./0408_backend_관통_PJT/WebContent/res/foodInfo.xml";
     private List<Food> foods;
 
     /**

@@ -12,6 +12,15 @@ public class FoodServiceImpl implements FoodService {
 	private String[] allergys = { "대두", "땅콩", "우유", "게", "새우", "참치", "연어", "쑥", "소고기", "닭고기", "돼지고기", "복숭아", "민들레",
 			"계란흰자" };
 
+	/**
+	 * 싱글톤
+	 */
+	private static FoodServiceImpl foodService;
+	public static FoodServiceImpl getInstance() {
+		if (foodService == null) foodService = new FoodServiceImpl();
+		return foodService;
+	}
+
 	public FoodServiceImpl() {
 		dao = FoodDaoImpl.getInstance();
 	}

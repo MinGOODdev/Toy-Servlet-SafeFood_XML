@@ -76,6 +76,14 @@
             </c:if>
         </div>
 
+		<div>
+            <label>Allergy</label><br>
+            <label><input type="checkbox" name="bean"> 대두</label>
+           	<label><input type="checkbox" name="milk"> 우유</label>
+           	<label><input type="checkbox" name="salmon"> 연어</label>
+            <br>
+        </div>
+
         <hr>
         <button class="btn btn-primary" type="submit" onclick="validate();">저장</button>
     </form>

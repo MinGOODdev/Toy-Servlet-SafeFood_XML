@@ -1,5 +1,6 @@
 package com.ssafy.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,9 @@ import com.ssafy.vo.Food;
  * FoodNutritionSAXHandler, FoodSAXHandler를 활용하여 식품 정보를 load하는 SAX Parser
  */
 public class FoodSaxParser {
-    private String nutritionFilePath = "FoodNutritionInfo.xml";
-    private String foodFilePath = "foodInfo.xml";
+	
+    private String nutritionFilePath = this.getClass().getResource("/").getPath()+"/FoodNutritionInfo.xml";
+    private String foodFilePath = this.getClass().getResource("/").getPath()+"/foodInfo.xml";
     private List<Food> foods;
 
     /**
@@ -22,6 +24,7 @@ public class FoodSaxParser {
      */
     public static FoodSaxParser foodSaxParser;
     public static FoodSaxParser getInstance() {
+    	
         if (foodSaxParser == null) foodSaxParser = new FoodSaxParser();
         return foodSaxParser;
     }
@@ -35,11 +38,13 @@ public class FoodSaxParser {
      */
     public void loadData() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-
         try {
             SAXParser parser = factory.newSAXParser();
             FoodSAXHandler handler = new FoodSAXHandler();
             FoodNutritionSAXHandler nHandler = new FoodNutritionSAXHandler();
+            System.out.println(foodFilePath);
+            System.out.println(nutritionFilePath);
+            
             parser.parse(foodFilePath, handler);
             parser.parse(nutritionFilePath, nHandler);
             Map<String, Food> foodMap = handler.getFoods();

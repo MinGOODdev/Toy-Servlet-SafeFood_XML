@@ -168,7 +168,7 @@ public class UserController {
 
 		Food temp = null;
 		for (Food b : foodDao.searchAll(new FoodPageBean())) {
-			if (b.getName().equals(code))
+			if (b.getCode() == Integer.parseInt(code))
 				temp = b;
 		}
 

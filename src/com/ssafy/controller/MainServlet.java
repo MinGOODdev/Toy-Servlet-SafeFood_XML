@@ -27,6 +27,7 @@ public class MainServlet extends HttpServlet {
 	}
 
 	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		String action = req.getParameter("action");
 		PageInfo page = null;
 

@@ -15,7 +15,7 @@ import com.ssafy.vo.Food;
 public class FoodSaxParser {
     private String nutritionFilePath = "FoodNutritionInfo.xml";
     private String foodFilePath = "foodInfo.xml";
-    private List<Food> foods;   // 전체 다 들어있는 데이터
+    private List<Food> foods;
 
     /**
      * 싱글톤

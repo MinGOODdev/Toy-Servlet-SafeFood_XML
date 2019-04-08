@@ -9,10 +9,18 @@ import com.ssafy.vo.FoodPageBean;
 
 public class FoodServiceImpl implements FoodService {
 	private FoodDaoImpl dao;
-	private String[] allergys = { "대두", "땅콩", "우유", "게", "새우", "참치", "연어", "쑥", "소고기", "닭고기", "돼지고기", "복숭아", "민들레",
-			"계란흰자" };
-
-	public FoodServiceImpl() {
+	private String[] allergys = { "���몢", "�븙肄�", "�슦�쑀", "寃�", "�깉�슦", "李몄튂", "�뿰�뼱", "�뫁", "�냼怨좉린", "�떗怨좉린", "�뤌吏�怨좉린", "蹂듭댂�븘", "誘쇰뱾�젅",
+			"怨꾨��씛�옄" };
+	private static FoodServiceImpl instance;
+	
+	public static FoodServiceImpl getInstance() {
+		if(instance==null) instance=new FoodServiceImpl();
+		return instance;
+		
+	}
+	
+	
+	private FoodServiceImpl() {
 		dao = FoodDaoImpl.getInstance();
 	}
 
@@ -28,7 +36,7 @@ public class FoodServiceImpl implements FoodService {
 				allergyList = allergyList + allergys[i] + " ";
 			}
 		}
-		// code에 맞는 식품 정보를 검색하고, 검색된 식품의 원재료에 알레르기 성분이 있는지 확인하여 Food 정보에 입력한다.
+		// code�뿉 留욌뒗 �떇�뭹 �젙蹂대�� 寃��깋�븯怨�, 寃��깋�맂 �떇�뭹�쓽 �썝�옱猷뚯뿉 �븣�젅瑜닿린 �꽦遺꾩씠 �엳�뒗吏� �솗�씤�븯�뿬 Food �젙蹂댁뿉 �엯�젰�븳�떎.
 		food.setAllergy(allergyList);
 		return food;
 	}

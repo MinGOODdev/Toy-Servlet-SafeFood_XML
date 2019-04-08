@@ -13,7 +13,7 @@
     <jsp:include page="../partial/nav.jsp"></jsp:include>
 
     <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/main.do">
-        <input type="hidden" value="search">
+        <input type="hidden" name="action" value="search">
 
         <select name="sb" class="form-control mr-sm-2">
             <option value="all">전체</option>

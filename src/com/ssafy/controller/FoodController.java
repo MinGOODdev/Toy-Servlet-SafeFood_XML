@@ -59,8 +59,9 @@ public class FoodController {
 
         switch (sb) {
             case "code":
-                List<Food> temp1 = foodService.searchAll(new FoodPageBean(sb, st, "1", 1));
-                System.out.println(temp1);
+                List<Food> temp1 = new ArrayList<>();
+                Food food = foodService.search(Integer.parseInt(st));
+                temp1.add(food);
                 request.setAttribute("foods", temp1);
                 break;
             case "name":

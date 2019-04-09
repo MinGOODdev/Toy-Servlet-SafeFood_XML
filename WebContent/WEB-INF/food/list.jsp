@@ -11,22 +11,23 @@
 <body>
 <div class="container div-margin-bottom">
     <jsp:include page="../partial/nav.jsp"></jsp:include>
-
-    <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/main.do">
-        <input type="hidden" name="action" value="search">
-
-        <select name="sb" class="form-control mr-sm-2">
-            <option value="all">전체</option>
-            <option value="code">식품코드</option>
-            <option value="name">식품명</option>
-            <option value="maker">제조사</option>
-            <option value="material">원재료</option>
-        </select>
-        <input class="form-control mr-sm-2" type="search" name="st" placeholder="Search" aria-label="Search">
-
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-
+	<form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/main.do">
+	    <input type="hidden" name="action" value="search">
+	
+		<div style="width: 100%; text-align:center">
+		    <select name="sb" class="form-control mr-sm-2">
+		        <option value="all">전체</option>
+		        <option value="code">식품코드</option>
+		        <option value="name">식품명</option>
+		        <option value="maker">제조사</option>
+		        <option value="material">원재료</option>
+		    </select>
+		    <input class="form-control mr-sm-2" type="search" name="st" placeholder="Search" aria-label="Search">
+		
+		    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</div>
+	</form>
+	<hr>
     <div class="row text-center">
         <c:choose>
             <c:when test="${not empty foods}">

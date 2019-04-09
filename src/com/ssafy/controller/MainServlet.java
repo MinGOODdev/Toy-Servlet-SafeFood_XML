@@ -1,5 +1,6 @@
 package com.ssafy.controller;
 
+import com.ssafy.test.DataInit;
 import com.ssafy.vo.PageInfo;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,11 @@ public class MainServlet extends HttpServlet {
 	private FoodController foodController = FoodController.getInstance();
 	private UserController userController = UserController.getInstance();
 	private AccountController accountController = AccountController.getInstance();
+
+	@Override
+	public void init() throws ServletException {
+		DataInit.init();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,9 +55,7 @@ public class MainServlet extends HttpServlet {
 				// User
 				case "order": page = userController.doPurchase(req, res); break;
 				case "orderList": page = userController.getPurchaseListByUser(req, res); break;
-
-//				// 도서 관련
-//				case "bookDelete": page = bookController.delete(req, res); break;
+				case "deletePurchase": page = userController.deletePurchase(req, res); break;
 			}
 
 			if (page.isForward()) {

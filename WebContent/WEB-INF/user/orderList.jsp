@@ -24,6 +24,7 @@
                 <th>일회 제공량</th>
                 <th>칼로리</th>
                 <th>알레르기 정보</th>
+                <th>-</th>
             </tr>
             </thead>
             <tbody>
@@ -36,17 +37,24 @@
                         <td>${f.supportpereat}</td>
                         <td>${f.calory}</td>
                         <td>${f.allergy}</td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/main.do" method="post">
+                                <input type="hidden" name="action" value="deletePurchase">
+                                <input type="hidden" name="code" value="${f.code}">
+                                <button class="btn-sm btn-danger">삭제</button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
-			</c:if>
+            </c:if>
             </tbody>
         </table>
         <table class="table table-hover table-bordered">
-        	<c:forEach items="${allergyCaution}" var="a">
-				<tr>
-					<td style="color: red">${a}</td>
-				</tr>
-			</c:forEach>
+            <c:forEach items="${allergyCaution}" var="a">
+                <tr>
+                    <td style="color: red">${a}</td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
 </div>

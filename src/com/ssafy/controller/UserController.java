@@ -90,4 +90,27 @@ public class UserController {
 		}
 		return new PageInfo("main.do?action=foodList");
 	}
+
+	/**
+	 * 섭취한 식품 삭제
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public PageInfo deletePurchase(HttpServletRequest request, HttpServletResponse response) {
+		String id = (String) request.getSession().getAttribute("userId");
+		String code = request.getParameter("code");
+
+		User user = null;
+		for (User u : userService.findAll()) {
+			if (u.getId().equalsIgnoreCase(id)) user = u;
+		}
+
+		List<Food> foods = user.getFoodList();
+		for (int i = 0; i < foods.size(); ++i) {
+			if (foods.get(i).getCode() == Integer.parseInt(code)) foods.remove(i);
+		}
+		return new PageInfo("main.do?action=orderList");
+	}
 }

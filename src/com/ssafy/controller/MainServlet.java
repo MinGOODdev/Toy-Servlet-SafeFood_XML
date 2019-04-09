@@ -15,6 +15,7 @@ public class MainServlet extends HttpServlet {
 
 	private FoodController foodController = FoodController.getInstance();
 	private UserController userController = UserController.getInstance();
+	private AccountController accountController = AccountController.getInstance();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,16 +38,17 @@ public class MainServlet extends HttpServlet {
                 case "foodList": page = foodController.getFoodList(req, res); break;
 				case "view": page = foodController.getFoodDetail(req, res); break;
 				case "search": page = foodController.searchBy(req, res); break;
-                // User
-				case "login": page = userController.login(req, res); break;
-				case "logout": page = userController.logout(req, res); break;
-				case "signUp": page = userController.signUp(req, res); break;
-				case "mypage": page = userController.getUserInfo(req, res); break;
-				case "updateUser": page = userController.updateUser(req, res); break;
-				case "userList": page = userController.getUserList(req, res); break;
+                // Account
+				case "login": page = accountController.login(req, res); break;
+				case "logout": page = accountController.logout(req, res); break;
+				case "signUp": page = accountController.signUp(req, res); break;
+				case "mypage": page = accountController.getUserInfo(req, res); break;
+				case "updateUser": page = accountController.updateUser(req, res); break;
+				case "userList": page = accountController.getUserList(req, res); break;
+				case "userDelete": page = accountController.deleteUser(req, res); break;
+				// User
 				case "order": page = userController.doPurchase(req, res); break;
 				case "orderList": page = userController.getPurchaseListByUser(req, res); break;
-				case "userDelete": page = userController.deleteUser(req, res); break;
 
 //				// 도서 관련
 //				case "bookDelete": page = bookController.delete(req, res); break;

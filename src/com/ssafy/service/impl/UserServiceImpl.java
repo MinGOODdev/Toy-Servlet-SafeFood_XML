@@ -1,5 +1,6 @@
 package com.ssafy.service.impl;
 
+import com.ssafy.dao.UserDao;
 import com.ssafy.dao.impl.UserDaoImpl;
 import com.ssafy.service.UserService;
 import com.ssafy.vo.User;
@@ -7,7 +8,7 @@ import com.ssafy.vo.User;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDaoImpl userDao;
+    private UserDao userDao;
 
     /**
      * 싱글톤

@@ -1,5 +1,6 @@
 package com.ssafy.controller;
 
+import com.ssafy.service.FoodService;
 import com.ssafy.service.impl.FoodServiceImpl;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodController {
-    private FoodServiceImpl foodService;
+    private FoodService foodService;
 
     /**
      * 싱글톤

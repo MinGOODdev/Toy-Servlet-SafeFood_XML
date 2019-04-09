@@ -1,13 +1,14 @@
 package com.ssafy.service.impl;
 
 import com.ssafy.service.CheckService;
+import com.ssafy.service.UserService;
 import com.ssafy.vo.User;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class CheckServiceImpl implements CheckService {
-	private UserServiceImpl userService;
+	private UserService userService;
 
 	/**
 	 * 싱글톤
@@ -18,7 +19,7 @@ public class CheckServiceImpl implements CheckService {
 		return checkService;
 	}
 
-	public CheckServiceImpl() {
+	private CheckServiceImpl() {
 		userService = UserServiceImpl.getInstance();
 	}
 

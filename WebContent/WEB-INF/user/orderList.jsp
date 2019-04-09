@@ -38,8 +38,15 @@
                         <td>${f.allergy}</td>
                     </tr>
                 </c:forEach>
-            </c:if>
+			</c:if>
             </tbody>
+        </table>
+        <table class="table table-hover table-bordered">
+        	<c:forEach items="${allergyCaution}" var="a">
+				<tr>
+					<td style="color: red">${a}</td>
+				</tr>
+			</c:forEach>
         </table>
     </div>
 </div>

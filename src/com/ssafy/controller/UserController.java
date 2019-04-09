@@ -95,11 +95,13 @@ public class UserController {
 		String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
-		String bean = request.getParameter("bean");// on
-		String milk = request.getParameter("milk");
-		String salmon = request.getParameter("salmon");
-
-		System.out.println(bean + " " + milk + " " + salmon);
+		String[] allergy  = request.getParameterValues("allergy[]");
+		
+		List<String> allergies = new ArrayList<>();
+		if(allergy != null) {
+			for(String a : allergy)
+				allergies.add(a);
+		}
 
 		HashMap<String, String> errorMessages = checkService.checkForSignUp(id, pw, name, age, gender);
 		if (errorMessages.size() > 0) {
@@ -107,13 +109,6 @@ public class UserController {
 			return new PageInfo(true, "signUp.jsp");
 		}
 
-		List<String> allergies = new ArrayList<>();
-		if (bean != null && bean.equals("on"))
-			allergies.add("대두");
-		if (milk != null && milk.equals("on"))
-			allergies.add("우유");
-		if (salmon != null && salmon.equals("on"))
-			allergies.add("연어");
 		User user = new User(id, pw, name, age, gender, new ArrayList<Food>(), allergies);
 		userService.add(user);
 		return new PageInfo("login.jsp");
@@ -154,9 +149,25 @@ public class UserController {
 	 */
 	public PageInfo getPurchaseListByUser(HttpServletRequest request, HttpServletResponse response) {
 		String id = (String) request.getSession().getAttribute("userId");
+		List<String> allergyCaution = new ArrayList<>();
 		for (User u : userService.findAll()) {
-			if (u.getId().equalsIgnoreCase(id))
+			if (u.getId().equalsIgnoreCase(id)) {
 				request.setAttribute("purchaseList", u.getFoodList());
+				for (Food f : u.getFoodList()) {
+					boolean check = false;
+					String caution = "알러지 경고!! " + f.getName() + "에 ";
+					for (String a : u.getAllergyList()) {
+						if (f.getAllergy().contains(a)) {
+							caution = caution + a + " ";
+							check = true;
+						}
+					}
+					caution = caution + "가 함유되어 있습니다.";
+					if (check)
+						allergyCaution.add(caution);
+				}
+				request.setAttribute("allergyCaution", allergyCaution);
+			}
 		}
 		return new PageInfo(true, "WEB-INF/user/orderList.jsp");
 	}
@@ -179,8 +190,9 @@ public class UserController {
 		}
 
 		for (User u : userService.findAll()) {
-			if (u.getId().equalsIgnoreCase(id))
+			if (u.getId().equalsIgnoreCase(id)) {
 				u.getFoodList().add(temp);
+			}
 		}
 		return new PageInfo("main.do?action=foodList");
 	}

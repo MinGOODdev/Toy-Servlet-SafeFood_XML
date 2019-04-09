@@ -66,7 +66,7 @@
             </c:if>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>GENDER</label><br>
             <input type="radio" name="gender" value="남"> 남
             <input type="radio" name="gender" value="여"> 여
@@ -78,9 +78,20 @@
 
 		<div>
             <label>Allergy</label><br>
-            <label><input type="checkbox" name="bean"> 대두</label>
-           	<label><input type="checkbox" name="milk"> 우유</label>
-           	<label><input type="checkbox" name="salmon"> 연어</label>
+            <label><input type="checkbox" name="allergy[]" value="대두"> 대두</label>
+           	<label><input type="checkbox" name="allergy[]" value="땅콩"> 땅콩</label>
+           	<label><input type="checkbox" name="allergy[]" value="우유"> 우유</label><br>
+           	<label><input type="checkbox" name="allergy[]" value="게"> 게</label>
+           	<label><input type="checkbox" name="allergy[]" value="새우"> 새우</label>
+           	<label><input type="checkbox" name="allergy[]" value="참치"> 참치</label>
+           	<label><input type="checkbox" name="allergy[]" value="연어"> 연어</label><br>
+           	<label><input type="checkbox" name="allergy[]" value="쑥"> 쑥</label>
+           	<label><input type="checkbox" name="allergy[]" value="소고기"> 소고기</label>
+           	<label><input type="checkbox" name="allergy[]" value="닭고기"> 닭고기</label>
+           	<label><input type="checkbox" name="allergy[]" value="돼지고기"> 돼지고기</label><br>
+           	<label><input type="checkbox" name="allergy[]" value="복숭아"> 복숭아</label>
+           	<label><input type="checkbox" name="allergy[]" value="민들레"> 민들레</label>
+           	<label><input type="checkbox" name="allergy[]" value="계란흰자"> 계란흰자</label>
             <br>
         </div>
 

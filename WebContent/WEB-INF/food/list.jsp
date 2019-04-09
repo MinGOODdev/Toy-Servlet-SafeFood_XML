@@ -40,8 +40,8 @@
                                      class="card-img-top" style="width: 70% !important;">
                                 <div class="card-body">
                                     <h4 class="card-title">${f.maker} / ${f.name}</h4>
-                                    <h5>일일 제공량: ${f.supportpereat}</h5>
-                                    <h5>칼로리: ${f.calory}</h5>
+                                    <h5>1회 제공량: ${f.supportpereat} g</h5>
+                                    <h5>칼로리: ${f.calory} kcal</h5>
                                 </div>
                             </a>
                         </div>

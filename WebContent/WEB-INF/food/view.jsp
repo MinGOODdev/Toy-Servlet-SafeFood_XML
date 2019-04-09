@@ -67,8 +67,10 @@
                     <td style="width: 50%;">알레르기 정보</td>
                     <td style="width: 50%;">${food.allergy}</td>
                 </tr>
+                <tr style="color: red">
                 	<td style="width: 50%;">섭취기준 50% 초과</td>
                     <td style="width: 50%;">${overList}</td>
+                </tr>
                 </tbody>
             </table>
         </div>

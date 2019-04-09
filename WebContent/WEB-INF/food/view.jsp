@@ -26,7 +26,7 @@
             </div>
             <div class="margin-auto div-margin-top">
                 <form action="${pageContext.request.contextPath}/main.do?action=foodDelete&code=${food.code}" method="post">
-                    <button class="btn btn-danger" type="submit">식품 식제</button>
+                    <button class="btn btn-danger" type="submit">식품 삭제</button>
                 </form>
             </div>
             <div>

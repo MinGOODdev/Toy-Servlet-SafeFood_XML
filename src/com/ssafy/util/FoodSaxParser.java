@@ -56,7 +56,7 @@ public class FoodSaxParser {
                     food.setMaterial(find.getMaterial());
                     food.setImg(find.getImg());
                 }
-//                System.out.println(food);
+               // System.out.println(food);
             }
 
             setFoods(temp);

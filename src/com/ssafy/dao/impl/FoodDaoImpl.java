@@ -64,6 +64,8 @@ public class FoodDaoImpl implements FoodDao {
                         break;
                 }
                 return finds;
+            }else {
+            	return foods;
             }
         }
         return finds;

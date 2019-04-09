@@ -28,6 +28,7 @@ public class FoodSAXHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) {
         switch (qName) {
             case "code": food.setCode(Integer.parseInt(temp)); break;
+            case "name": food.setName(temp); break;
             case "maker": food.setMaker(temp); break;
             case "material": food.setMaterial(temp); break;
             case "image": food.setImg(temp); break;

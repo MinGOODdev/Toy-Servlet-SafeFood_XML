@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -51,12 +52,12 @@
                     <td style="width: 50%;">${food.maker}</td>
                 </tr>
                 <tr>
-                    <td style="width: 50%;">일일 제공량</td>
-                    <td style="width: 50%;">${food.supportpereat}</td>
+                    <td style="width: 50%;">1회 제공량</td>
+                    <td style="width: 50%;">${food.supportpereat}g</td>
                 </tr>
                 <tr>
-                    <td style="width: 50%;">일회 제공 칼로리</td>
-                    <td style="width: 50%;">${food.calory}</td>
+                    <td style="width: 50%;">1회 제공 칼로리</td>
+                    <td style="width: 50%;">${food.calory} kcal</td>
                 </tr>
                 <tr>
                     <td style="width: 50%;">원료</td>
@@ -77,30 +78,28 @@
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['칼로리', '탄수화물', '단백질', '지방', '당류', '나트륨', '콜레스테롤', '포화지방산', '트랜스지방'],
+                labels: ['탄수화물', '단백질', '지방', '당류', '나트륨', '콜레스테롤', '포화지방산', '트랜스지방'],
                 datasets: [{
                     label: '# 영양소',
                     data: [
-                        ${food.calory},
                         ${food.carbo},
                         ${food.protein},
                         ${food.fat},
                         ${food.sugar},
-                        ${food.natrium},
+                        <fmt:formatNumber type="number" pattern="0.00" value="${food.natrium/1000}" />,
                         ${food.chole},
                         ${food.fattyacid},
                         ${food.transfat}
                     ],
                     backgroundColor: [
-                        'rgba(192, 47, 30,1)',
-                        'rgba(216, 78, 31, 1)',
-                        'rgba(236, 170, 57, 1)',
-                        'rgba(234, 200, 67, 1)',
-                        'rgba(162, 184, 109, 1)',
-                        'rgba(92, 167, 147, 1)',
-                        'rgba(19, 149, 185, 1)',
-                        'rgba(16, 91, 120, 1)',
-                        'rgba(17, 59, 84, 1)'
+                    	'rgba(246, 64, 44, 1)', //탄수화물
+                        'rgba(255, 152, 0, 1)', //단백질
+                        'rgba(255, 236, 22, 1)', //지방
+                        'rgba(136, 196, 64, 1)', //당류
+                        'rgba(0, 187, 213, 1)', // 나트륨
+                        'rgba(16, 147, 245, 1)', // 콜레스테롤
+                        'rgba(61, 77, 183, 1)', // 포화지방산
+                        'rgba(156, 26, 177, 1)' //트랜스지방
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',

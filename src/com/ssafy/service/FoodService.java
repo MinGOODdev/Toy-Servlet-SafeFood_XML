@@ -11,4 +11,6 @@ public interface FoodService {
 
     Food search(int code);
 
+    String oversearch(int code, String id);
+
 }

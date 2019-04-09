@@ -15,7 +15,7 @@
     <jsp:include page="../partial/nav.jsp"></jsp:include>
 
     <div class="table-responsive">
-        <h3>구매 내역</h3>
+        <h3>섭취 목록</h3>
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
             <tr>
@@ -35,8 +35,8 @@
                         <td>${status.count}</td>
                         <td>${f.name}</td>
                         <td>${f.maker}</td>
-                        <td>${f.supportpereat}</td>
-                        <td>${f.calory}</td>
+                        <td>${f.supportpereat} g</td>
+                        <td>${f.calory} kcal</td>
                         <td>${f.allergy}</td>
                         <td>
                             <form action="${pageContext.request.contextPath}/main.do" method="post">

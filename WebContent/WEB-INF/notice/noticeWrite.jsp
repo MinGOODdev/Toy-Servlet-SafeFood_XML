@@ -32,7 +32,8 @@
                 </tr>
                 </tbody>
             </table>
-            <div style="width: 100%; text-align:center"><input type="submit" value="등록"></div>
+            
+            <div style="width: 100%; text-align:center"><button class="btn btn-primary" type="submit">등록</button></div>
         </form>
     </div>
 </div>

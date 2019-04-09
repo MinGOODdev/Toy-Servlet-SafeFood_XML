@@ -1,10 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>구매 내역</title>
+    <title>섭취목록</title>
     <meta charset="UTF-8">
 
     <jsp:include page="../partial/config.jsp"></jsp:include>
@@ -21,7 +22,7 @@
                 <th>#</th>
                 <th>식품명</th>
                 <th>제조사</th>
-                <th>일회 제공량</th>
+                <th>1회 제공량</th>
                 <th>칼로리</th>
                 <th>알레르기 정보</th>
                 <th>-</th>

@@ -10,4 +10,8 @@ public interface CheckService {
 
     HashMap<String, String> checkForSignUp(String id, String pw, String name, int age, String gender);
 
+    String findPassword(String id, String name);
+
+	HashMap<String, String> checkFindPw(String id, String name);
+
 }

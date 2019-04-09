@@ -52,6 +52,9 @@
             <a class="ssafy" href="${pageContext.request.contextPath}/signUp.jsp">
                 <button class="btn btn-link" type="button">회원가입</button>
             </a>
+            <a class="ssafy" href="${pageContext.request.contextPath}/findPw.jsp">
+                <button class="btn btn-link" type="button">비밀번호 찾기</button>
+            </a>
             <a class="ssafy" href="${pageContext.request.contextPath}/main.do?action=userList">
                 <button class="btn btn-link" type="button">회원명단</button>
             </a>

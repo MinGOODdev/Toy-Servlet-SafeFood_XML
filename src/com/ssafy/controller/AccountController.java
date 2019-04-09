@@ -75,7 +75,29 @@ public class AccountController {
         request.getSession().invalidate();
         return new PageInfo("login.jsp");
     }
-
+    
+    /**
+     * 비밀번호 찾기
+     */
+    public PageInfo findPw(HttpServletRequest request, HttpServletResponse response) {
+    	String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        
+        HashMap<String, String> errorMessages = checkService.checkFindPw(id, name);
+        
+        if (errorMessages.size() > 0) {
+            request.setAttribute("errorMessages", errorMessages);
+            return new PageInfo(true, "findPw.jsp");
+        }
+        
+        String pw = checkService.findPassword(id, name);
+        if (pw != null) {
+        	return new PageInfo("main.do?action=yourPwHere&pw=" + pw);
+        } else {
+        	return new PageInfo(true, "findPw.jsp");
+        }        
+    }
+    
     /**
      * 회원가입
      *
@@ -172,4 +194,10 @@ public class AccountController {
         return new PageInfo(true, "WEB-INF/user/list.jsp");
     }
 
+	public PageInfo yourPwHere(HttpServletRequest request, HttpServletResponse response) {
+		String pw = request.getParameter("pw");
+		System.out.println(pw);
+		request.setAttribute("pw", pw);
+        return new PageInfo(true, "yourPwHere.jsp");
+	}
 }

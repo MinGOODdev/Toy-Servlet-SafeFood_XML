@@ -47,6 +47,8 @@ public class MainServlet extends HttpServlet {
 				case "login": page = accountController.login(req, res); break;
 				case "logout": page = accountController.logout(req, res); break;
 				case "signUp": page = accountController.signUp(req, res); break;
+				case "findPw": page = accountController.findPw(req, res); break;
+				case "yourPwHere": page = accountController.yourPwHere(req, res); break;
 				case "mypage": page = accountController.getUserInfo(req, res); break;
 				case "updateUser": page = accountController.updateUser(req, res); break;
 				case "userList": page = accountController.getUserList(req, res); break;

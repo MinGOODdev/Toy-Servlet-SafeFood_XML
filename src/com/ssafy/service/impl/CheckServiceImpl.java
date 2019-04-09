@@ -43,6 +43,39 @@ public class CheckServiceImpl implements CheckService {
 	}
 
 	/**
+	 * 비밀번호 찾기 검사
+	 *
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	@Override
+	public String findPassword(String id, String name) {
+		List<User> users = userService.findAll();
+		for (User u : users) {
+			if (u.getId().equalsIgnoreCase(id) && u.getName().equals(name)) {
+				return u.getPw();
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * ID, NAME null 체크
+	 *
+	 * @param id
+	 * @param pw
+	 * @return
+	 */
+	@Override
+	public HashMap<String, String> checkFindPw(String id, String name) {
+		HashMap<String, String> errorMessages = new HashMap<>();
+		if (id == null || id.trim().length() == 0) errorMessages.put("idError", "아이디가 입력되지 않았습니다.");
+		if (name == null || name.trim().length() == 0) errorMessages.put("nameError", "이름이 입력되지 않았습니다.");
+		return errorMessages;
+	}
+	
+	/**
 	 * ID, PW null 체크
 	 *
 	 * @param id

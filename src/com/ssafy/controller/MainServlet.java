@@ -17,7 +17,7 @@ public class MainServlet extends HttpServlet {
 	private FoodController foodController = FoodController.getInstance();
 	private UserController userController = UserController.getInstance();
 	private AccountController accountController = AccountController.getInstance();
-
+	private NoticeController noticeController = NoticeController.getInstance();
 	@Override
 	public void init() throws ServletException {
 		DataInit.init();
@@ -37,7 +37,6 @@ public class MainServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		String action = req.getParameter("action");
 		PageInfo page = null;
-
 		try {
 			switch (action) {
 			    // Food
@@ -56,6 +55,12 @@ public class MainServlet extends HttpServlet {
 				case "order": page = userController.doPurchase(req, res); break;
 				case "orderList": page = userController.getPurchaseListByUser(req, res); break;
 				case "deletePurchase": page = userController.deletePurchase(req, res); break;
+				// Notice
+				case "noticeList": page = noticeController.getNoticeList(req, res); break;
+				case "noticeDetail": page = noticeController.getNoticeDetail(req, res); break;
+				case "getWrite": page = noticeController.getWrite(req, res); break;
+				case "registerNotice": page = noticeController.registerNotice(req, res); break;
+				case "deleteNotice" : page = noticeController.deleteNotice(req, res); break;
 			}
 
 			if (page.isForward()) {

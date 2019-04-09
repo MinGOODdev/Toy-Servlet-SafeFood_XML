@@ -24,6 +24,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=logout">Logout</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=noticeList">공지사항</a>
+            </li>
 
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

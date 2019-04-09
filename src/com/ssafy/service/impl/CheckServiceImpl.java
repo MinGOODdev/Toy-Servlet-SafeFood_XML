@@ -1,6 +1,5 @@
 package com.ssafy.service.impl;
 
-import com.ssafy.dao.impl.UserDaoImpl;
 import com.ssafy.service.CheckService;
 import com.ssafy.vo.User;
 
@@ -8,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CheckServiceImpl implements CheckService {
-	private UserDaoImpl userMgr = UserDaoImpl.getInstance();
+	private UserServiceImpl userService;
 
 	/**
 	 * 싱글톤
@@ -17,6 +16,10 @@ public class CheckServiceImpl implements CheckService {
 	public static CheckServiceImpl getInstance() {
 		if (checkService == null) checkService = new CheckServiceImpl();
 		return checkService;
+	}
+
+	public CheckServiceImpl() {
+		userService = UserServiceImpl.getInstance();
 	}
 
 	/**
@@ -28,7 +31,7 @@ public class CheckServiceImpl implements CheckService {
 	 */
 	@Override
 	public boolean checkAccount(String id, String pw) {
-		List<User> users = userMgr.findAll();
+		List<User> users = userService.findAll();
 		for (User u : users) {
 			if (u.getId().equalsIgnoreCase(id) && u.getPw().equals(pw)) {
 				System.out.println(u.getAllergyList());
@@ -70,7 +73,7 @@ public class CheckServiceImpl implements CheckService {
 		if (age <= 0) errorMessages.put("ageError", "나이를 올바르게 입력해주세요.");
 		if (gender == null || gender.trim().length() == 0) errorMessages.put("genderError", "성별을 선택해주세요.");
 
-		List<User> users = userMgr.findAll();
+		List<User> users = userService.findAll();
 		for (User u : users) {
 			if (u.getId().equalsIgnoreCase(id)) errorMessages.put("idAlready", "입력한 아이디가 이미 존재합니다.");
 		}

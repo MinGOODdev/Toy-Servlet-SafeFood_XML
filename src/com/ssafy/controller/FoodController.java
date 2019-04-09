@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoodController {
-    private FoodServiceImpl foodService = FoodServiceImpl.getInstance();
+    private FoodServiceImpl foodService;
 
     /**
      * 싱글톤
@@ -20,6 +20,10 @@ public class FoodController {
     public static FoodController getInstance() {
         if (foodController == null) foodController = new FoodController();
         return foodController;
+    }
+
+    private FoodController() {
+        foodService = FoodServiceImpl.getInstance();
     }
 
     /**
@@ -59,25 +63,25 @@ public class FoodController {
         String sb = request.getParameter("sb");
         String st = request.getParameter("st");
 
+        List<Food> temp = new ArrayList<>();
         switch (sb) {
             case "all":
                 request.setAttribute("foods", foodService.searchAll(new FoodPageBean()));
                 break;
             case "code":
-                List<Food> temp1 = new ArrayList<>();
                 Food food = foodService.search(Integer.parseInt(st));
-                temp1.add(food);
-                request.setAttribute("foods", temp1);
+                temp.add(food);
+                request.setAttribute("foods", temp);
                 break;
             case "name":
             case "maker":
-                ArrayList<Food> temp2 = new ArrayList<>();
-                System.out.println(temp2);
+            case "material":
                 for (Food f : foodService.searchAll(new FoodPageBean(sb, st))) {
-                    temp2.add(f);
+                    temp.add(f);
                 }
-                request.setAttribute("foods", temp2);
+                request.setAttribute("foods", temp);
                 break;
+
         }
         return new PageInfo(true, "WEB-INF/food/list.jsp");
     }

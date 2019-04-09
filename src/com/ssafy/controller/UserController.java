@@ -1,8 +1,8 @@
 package com.ssafy.controller;
 
-import com.ssafy.dao.impl.FoodDaoImpl;
-import com.ssafy.dao.impl.UserDaoImpl;
 import com.ssafy.service.impl.CheckServiceImpl;
+import com.ssafy.service.impl.FoodServiceImpl;
+import com.ssafy.service.impl.UserServiceImpl;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.PageInfo;
@@ -17,9 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UserController {
-	private CheckServiceImpl checkService = CheckServiceImpl.getInstance();
-	private UserDaoImpl userDao = UserDaoImpl.getInstance();
-	private FoodDaoImpl foodDao = FoodDaoImpl.getInstance();
+	private CheckServiceImpl checkService;
+	private UserServiceImpl userService;
+	private FoodServiceImpl foodService;
 
 	/**
 	 * 싱글톤
@@ -30,6 +30,12 @@ public class UserController {
 		if (userController == null)
 			userController = new UserController();
 		return userController;
+	}
+
+	private UserController() {
+		foodService = FoodServiceImpl.getInstance();
+		userService = UserServiceImpl.getInstance();
+		checkService = CheckServiceImpl.getInstance();
 	}
 
 	/**
@@ -109,7 +115,7 @@ public class UserController {
 		if (salmon != null && salmon.equals("on"))
 			allergies.add("연어");
 		User user = new User(id, pw, name, age, gender, new ArrayList<Food>(), allergies);
-		userDao.add(user);
+		userService.add(user);
 		return new PageInfo("login.jsp");
 	}
 
@@ -121,7 +127,7 @@ public class UserController {
 	 * @return
 	 */
 	public PageInfo getUserList(HttpServletRequest request, HttpServletResponse response) {
-		List<User> users = userDao.findAll();
+		List<User> users = userService.findAll();
 		request.setAttribute("users", users);
 		return new PageInfo(true, "WEB-INF/user/list.jsp");
 	}
@@ -135,7 +141,7 @@ public class UserController {
 	 */
 	public PageInfo deleteUser(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("id");
-		userDao.delete(id);
+		userService.delete(id);
 		return new PageInfo("main.do?action=userList");
 	}
 
@@ -148,7 +154,7 @@ public class UserController {
 	 */
 	public PageInfo getPurchaseListByUser(HttpServletRequest request, HttpServletResponse response) {
 		String id = (String) request.getSession().getAttribute("userId");
-		for (User u : userDao.findAll()) {
+		for (User u : userService.findAll()) {
 			if (u.getId().equalsIgnoreCase(id))
 				request.setAttribute("purchaseList", u.getFoodList());
 		}
@@ -167,16 +173,30 @@ public class UserController {
 		String code = request.getParameter("code");
 
 		Food temp = null;
-		for (Food b : foodDao.searchAll(new FoodPageBean())) {
+		for (Food b : foodService.searchAll(new FoodPageBean())) {
 			if (b.getCode() == Integer.parseInt(code))
 				temp = b;
 		}
 
-		for (User u : userDao.findAll()) {
+		for (User u : userService.findAll()) {
 			if (u.getId().equalsIgnoreCase(id))
 				u.getFoodList().add(temp);
 		}
 		return new PageInfo("main.do?action=foodList");
+	}
+
+	/**
+	 * 회원 정보 수정 (GET)
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public PageInfo getUserInfo(HttpServletRequest request, HttpServletResponse response) {
+		String id = (String) request.getSession().getAttribute("userId");
+		User user = userService.searchById(id);
+		request.setAttribute("user", user);
+		return new PageInfo(true, "main.do?action=mypage");
 	}
 
 }

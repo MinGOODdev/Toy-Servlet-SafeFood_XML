@@ -74,4 +74,18 @@ public class UserDaoImpl implements UserDao {
         }
         return temp;
     }
+
+    /**
+     * 회원 검색 (아이디)
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public User searchById(String id) {
+        for (User u : users) {
+            if (u.getId().equalsIgnoreCase(id)) return u;
+        }
+        return null;
+    }
 }

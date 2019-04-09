@@ -14,11 +14,11 @@
     <jsp:include page="../partial/nav.jsp"></jsp:include>
 
     <div class="table-responsive">
-        <h3>공지 사항</h3>
+        <h3>공지사항</h3>
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
             <tr>
-                <th>#</th>
+                <th class="notice-width">#</th>
                 <th>제목</th>
             </tr>
             </thead>
@@ -27,13 +27,17 @@
                 <c:forEach items="${noticeList}" var="n" varStatus="status">
                     <tr>
                         <td>${status.count}</td>
-                        <td><a href="${pageContext.request.contextPath}/main.do?action=noticeDetail&title=${n.title}">${n.title}</a></td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/main.do?action=noticeDetail&title=${n.title}">${n.title}</a>
+                        </td>
                     </tr>
                 </c:forEach>
-			</c:if>
+            </c:if>
             </tbody>
         </table>
-        <h3 style="text-align: right"><a href="${pageContext.request.contextPath}/main.do?action=getWrite">글 쓰기</a></h3>
+        <h3 style="text-align: right">
+            <a href="${pageContext.request.contextPath}/main.do?action=getWrite" class="btn btn-primary">글 쓰기</a>
+        </h3>
     </div>
 </div>
 </body>

@@ -19,6 +19,9 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=foodList">Home</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=mypage">MyPage</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/main.do?action=logout">Logout</a>
             </li>
 

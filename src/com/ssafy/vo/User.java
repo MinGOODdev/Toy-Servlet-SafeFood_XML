@@ -44,7 +44,35 @@ public class User {
     public List<Food> getFoodList() {
         return foodList;
     }
-    
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setFoodList(List<Food> foodList) {
+        this.foodList = foodList;
+    }
+
+    public void setAllergyList(List<String> allergyList) {
+        this.allergyList = allergyList;
+    }
+
     public List<String> getAllergyList() {
         return allergyList;
     }

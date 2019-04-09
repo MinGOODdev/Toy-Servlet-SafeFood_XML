@@ -208,7 +208,30 @@ public class UserController {
 		String id = (String) request.getSession().getAttribute("userId");
 		User user = userService.searchById(id);
 		request.setAttribute("user", user);
-		return new PageInfo(true, "main.do?action=mypage");
+		return new PageInfo(true, "WEB-INF/user/mypage.jsp");
 	}
 
+	/**
+	 * 회원 정보 수정 (POST)
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public PageInfo updateUser(HttpServletRequest request, HttpServletResponse response) {
+		String id = (String) request.getSession().getAttribute("userId");
+		User user = userService.searchById(id);
+		int age = Integer.parseInt(request.getParameter("age"));
+		String[] allergy = request.getParameterValues("allergy[]");
+
+		List<String> allergies = new ArrayList<>();
+		if(allergy != null) {
+			for(String a : allergy)
+				allergies.add(a);
+		}
+
+		user.setAge(age);
+		user.setAllergyList(allergies);
+		return new PageInfo("main.do?action=mypage");
+	}
 }

@@ -5,79 +5,60 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>회원가입</title>
+    <title>내 정보 관리</title>
 
-    <jsp:include page="WEB-INF/partial/config.jsp"></jsp:include>
+    <jsp:include page="../partial/config.jsp"></jsp:include>
     <script src="${pageContext.request.contextPath}/res/js/login.js"></script>
 </head>
 <body>
 <div class="container text-center" style="margin-top: 8%;">
-    <h1 class="ssafy">회원가입</h1>
+    <h1 class="ssafy">회원 정보 수정</h1>
     <hr>
 
     <form action="${pageContext.request.contextPath}/main.do" method="post">
-        <input type="hidden" name="action" value="signUp">
+        <input type="hidden" name="action" value="updateUser">
 
         <div class="form-group">
             <label for="id">ID</label>
             <input class="form-control margin-auto login-input-width"
-                   type="text" id="id" name="id"
-                   placeholder="ID를 입력하세요.">
-
-            <c:if test="${errorMessages.idError != null}">
-                <span class="error">${errorMessages.idError}</span>
-            </c:if>
-
-            <c:if test="${errorMessages.idAlready != null}">
-                <span class="error">${errorMessages.idAlready}</span>
-            </c:if>
-        </div>
-
-        <div class="form-group">
-            <label for="pw">PW</label>
-            <input class="form-control margin-auto login-input-width"
-                   type="password" id="pw" name="pw"
-                   placeholder="Password를 입력하세요.">
-
-            <c:if test="${errorMessages.pwError != null}">
-                <span class="error">${errorMessages.pwError}</span>
-            </c:if>
+                   type="text" id="id" name="id" value="${user.id}" readonly>
         </div>
 
         <div class="form-group">
             <label for="name">NAME</label>
             <input class="form-control margin-auto login-input-width"
-                   type="text" id="name" name="name"
-                   placeholder="이름을 입력하세요.">
-
-            <c:if test="${errorMessages.nameError != null}">
-                <span class="error">${errorMessages.nameError}</span>
-            </c:if>
+                   type="text" id="name" name="name" value="${user.name}" readonly>
         </div>
 
         <div class="form-group">
             <label for="age">AGE</label>
             <input class="form-control margin-auto login-input-width"
-                   type="number" id="age" name="age" value="1"
-                   placeholder="나이를 입력하세요.">
-
-            <c:if test="${errorMessages.ageError != null}">
-                <span class="error">${errorMessages.ageError}</span>
-            </c:if>
-        </div>
-
-        <div class="form-group">
-            <label>GENDER</label><br>
-            <label><input type="radio" name="gender" value="남"> 남</label>
-            <label><input type="radio" name="gender" value="여"> 여</label>
-            <br>
-            <c:if test="${errorMessages.genderError != null}">
-                <span class="error">${errorMessages.genderError}</span>
-            </c:if>
+                   type="number" id="age" name="age" value="${user.age}">
         </div>
 
         <div>
-            <label>Allergy</label><br>
+            <label>GENDER</label><br>
+            <input class="form-control margin-auto login-input-width"
+                   type="text" id="gender" name="gender" value="${user.gender}" readonly>
+        </div>
+
+        <br>
+
+        <div>
+            <label>현재 나의 알러지 정보</label><br>
+            <c:choose>
+                <c:when test="${not empty user.allergyList}">
+                    <c:forEach items="${user.allergyList}" var="al">
+                        <span>${al}&nbsp;</span>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
+        </div>
+
+        <hr>
+
+        <div>
+            <label>알러지 재설정</label><br>
             <label><input type="checkbox" name="allergy[]" value="대두"> 대두</label>
             <label><input type="checkbox" name="allergy[]" value="땅콩"> 땅콩</label>
             <label><input type="checkbox" name="allergy[]" value="우유"> 우유</label><br>
